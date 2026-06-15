@@ -104,7 +104,7 @@ export default function Navbar() {
       }`}
       style={{ willChange: "transform" }}
     >
-      <div className="bg-opacity-90 w-full bg-accent-500 py-2 shadow-md backdrop-blur-md">
+      <div className="bg-opacity-90 w-full bg-accent-500 py-2 shadow-md backdrop-blur-md" style={{ '--color-ring': 'white' } as React.CSSProperties}>
         <div className="container mx-auto flex max-w-[90rem] justify-between px-5 md:px-10 lg:px-20">
           <div className="flex items-center gap-2 text-xl font-bold text-white">
             <span>Andrew Murwin</span>
@@ -125,6 +125,7 @@ export default function Navbar() {
                       <a
                         href={`#${item.id}`}
                         onClick={(e) => handleNavClick(e, item.id)}
+                        className="focus-visible:outline-none"
                       >
                         {item.name}
                       </a>
@@ -161,7 +162,7 @@ export default function Navbar() {
                       <button
                         type="button"
                         onClick={(e) => handleNavClick(e, item.id)}
-                        className="w-full cursor-pointer border-none bg-transparent p-0 text-left"
+                        className="w-full cursor-pointer rounded border-none bg-transparent p-0 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2"
                       >
                         {item.name}
                       </button>

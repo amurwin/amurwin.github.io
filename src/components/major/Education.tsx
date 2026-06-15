@@ -205,10 +205,12 @@ export default function Education() {
                         />
                         <div className="absolute inset-0 mx-auto flex flex-col items-center justify-center gap-5 px-10 font-bold sm:text-2xl dark:text-white">
                           <div className="whitespace-pre-line text-center">{paper.title}</div>
-                          <a href={paper.href} download>
-                            <button className="flex cursor-pointer items-center gap-2 rounded-lg bg-accent-500 px-4 py-2 text-sm text-white hover:bg-accent-600">
-                              ↓ Download
-                            </button>
+                          <a
+                            href={paper.href}
+                            download
+                            className="flex cursor-pointer items-center gap-2 rounded-lg bg-accent-500 px-4 py-2 text-sm text-white hover:bg-accent-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-accent-500"
+                          >
+                            ↓ Download
                           </a>
                         </div>
                       </CarouselItem>

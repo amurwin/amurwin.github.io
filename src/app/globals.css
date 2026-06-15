@@ -75,9 +75,9 @@
 
 [data-theme="green"] {
   --color-accent-200: var(--color-green-300);
-  --color-accent-400: var(--color-green-500);
-  --color-accent-500: var(--color-green-600);
-  --color-accent-600: var(--color-green-700);
+  --color-accent-400: var(--color-green-600);
+  --color-accent-500: var(--color-green-700);
+  --color-accent-600: var(--color-green-800);
   --color-accent-800: var(--color-green-900);
 }
 
@@ -198,6 +198,17 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+  /* WCAG 2.4.7: Visible focus indicators for all keyboard-navigable elements */
+  :focus-visible {
+    outline: 2px solid var(--color-accent-500);
+    outline-offset: 3px;
+    border-radius: 3px;
+  }
+  /* Elements that use box-shadow rings (shadcn Button) manage their own focus */
+  button:focus-visible,
+  [role="button"]:focus-visible {
+    outline: none;
   }
 }
 

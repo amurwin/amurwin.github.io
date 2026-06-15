@@ -12,6 +12,8 @@ export default function Footer() {
             href="https://github.com/amurwin/amurwin.github.io"
             target="_blank"
             rel="noreferrer"
+            aria-label="GitHub repository (opens in new tab)"
+            className="rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2"
           >
             <Image
               src="/github-white.svg"
