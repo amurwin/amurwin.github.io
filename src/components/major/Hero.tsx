@@ -85,6 +85,7 @@ export default function Hero() {
                     <Code
                       style={{ width: "1em", height: "1em" }}
                       className="ml-4 text-accent-500 lg:ml-5"
+                      aria-hidden="true"
                     />
                   </span>
                 </h1>
@@ -121,21 +122,22 @@ export default function Hero() {
                 }}
               >
                 <div className="mt-2 flex justify-start gap-4 lg:justify-start">
-                  <a href="/Andrew-Murwin-Resume.pdf" download>
-                    <button className="flex w-36 transform cursor-pointer items-center justify-center gap-2 rounded-lg bg-accent-500 px-6 py-2 font-medium text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-accent-500/90 sm:w-40">
-                      <IconDownload />
-                      Resume
-                    </button>
+                  <a
+                    href="/Andrew-Murwin-Resume.pdf"
+                    download
+                    className="flex w-36 transform cursor-pointer items-center justify-center gap-2 rounded-lg bg-accent-500 px-6 py-2 font-medium text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-accent-500/90 sm:w-40"
+                  >
+                    <IconDownload aria-hidden="true" />
+                    Resume
                   </a>
                   <a
                     href="https://www.linkedin.com/in/andrew-murwin/"
                     target="_blank"
                     rel="noreferrer"
+                    className="flex w-36 transform cursor-pointer items-center justify-center gap-2 rounded-lg border border-gray-300 bg-white px-6 py-2 font-medium text-black transition-all duration-300 hover:-translate-y-0.5 hover:bg-gray-100 sm:w-40 dark:border-gray-700 dark:bg-black dark:text-white dark:hover:bg-gray-900"
                   >
-                    <button className="flex w-36 transform cursor-pointer items-center justify-center gap-2 rounded-lg border border-gray-300 bg-white px-6 py-2 font-medium text-black transition-all duration-300 hover:-translate-y-0.5 hover:bg-gray-100 sm:w-40 dark:border-gray-700 dark:bg-black dark:text-white dark:hover:bg-gray-900">
-                      <IconBrandLinkedin />
-                      LinkedIn
-                    </button>
+                    <IconBrandLinkedin aria-hidden="true" />
+                    LinkedIn
                   </a>
                 </div>
               </motion.div>

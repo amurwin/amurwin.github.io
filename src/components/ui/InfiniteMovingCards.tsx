@@ -3,6 +3,14 @@
 import { cn } from "@/lib/utils";
 import { type ComponentType, type CSSProperties, useEffect, useRef, useState } from "react";
 
+const SPEED_PX_PER_MS: Record<string, number> = {
+  fast: 0.05,
+  normal: 0.025,
+  slow: 0.0125,
+};
+
+const DRAG_THRESHOLD = 5;
+
 export const InfiniteMovingCards = ({
   items,
   direction = "left",
@@ -12,10 +20,7 @@ export const InfiniteMovingCards = ({
 }: {
   items: {
     name: string;
-    icon: ComponentType<{
-      style?: CSSProperties;
-      className?: string;
-    }>;
+    icon: ComponentType<{ style?: CSSProperties; className?: string }>;
     description: string;
     position: string;
     date: string;
@@ -25,105 +30,146 @@ export const InfiniteMovingCards = ({
   pauseOnHover?: boolean;
   className?: string;
 }) => {
-  const containerRef = useRef<HTMLDivElement>(null);
   const scrollerRef = useRef<HTMLUListElement>(null);
-  const duplicationFlag = useRef(false); // Persist duplication flag across re-renders
+  const duplicationFlag = useRef(false);
+  const [start, setStart] = useState(false);
+
+  const positionRef = useRef(0);
+  const rafRef = useRef<number>(0);
+  const isDragging = useRef(false);
+  const isPending = useRef(false);
+  const isHovered = useRef(false);
+  const isMouseDown = useRef(false);
+  const dragStartX = useRef(0);
+  const dragStartPosition = useRef(0);
 
   useEffect(() => {
-    addAnimation();
+    if (!scrollerRef.current) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    if (!duplicationFlag.current) {
+      const children = Array.from(scrollerRef.current.children);
+      children.forEach((item) => {
+        scrollerRef.current!.appendChild(item.cloneNode(true));
+      });
+      duplicationFlag.current = true;
+    }
+
+    setStart(true);
   }, []);
-  const [start, setStart] = useState(false);
-  function addAnimation() {
-    if (containerRef.current && scrollerRef.current) {
-      // Prevent duplicating items multiple times
-      if (!duplicationFlag.current) {
-        const scrollerContent = Array.from(scrollerRef.current.children);
 
-        scrollerContent.forEach((item) => {
-          const duplicatedItem = item.cloneNode(true);
-          if (scrollerRef.current) {
-            scrollerRef.current.appendChild(duplicatedItem);
-          }
-        });
-        duplicationFlag.current = true; // Set the flag to true after duplication
+  useEffect(() => {
+    if (!start || !scrollerRef.current) return;
+
+    const el = scrollerRef.current;
+    const pxPerMs = SPEED_PX_PER_MS[speed] ?? SPEED_PX_PER_MS.fast;
+    const dir = direction === "left" ? 1 : -1;
+    let lastTime: number | null = null;
+
+    const tick = (time: number) => {
+      const loopWidth = el.scrollWidth / 2;
+      // Pause auto-scroll while user is actively selecting text
+      const isSelectingText = isMouseDown.current && !!window.getSelection()?.toString();
+
+      if (lastTime !== null && !isDragging.current && !isHovered.current && !isSelectingText) {
+        const delta = time - lastTime;
+        positionRef.current += pxPerMs * delta * dir;
+        if (positionRef.current >= loopWidth) positionRef.current -= loopWidth;
+        if (positionRef.current < 0) positionRef.current += loopWidth;
       }
 
-      getDirection();
-      getSpeed();
-      setStart(true);
-    }
-  }
-  const getDirection = () => {
-    if (containerRef.current) {
-      if (direction === "left") {
-        containerRef.current.style.setProperty(
-          "--animation-direction",
-          "forwards",
-        );
-      } else {
-        containerRef.current.style.setProperty(
-          "--animation-direction",
-          "reverse",
-        );
-      }
-    }
+      lastTime = time;
+      el.style.transform = `translateX(${-positionRef.current}px)`;
+      rafRef.current = requestAnimationFrame(tick);
+    };
+
+    rafRef.current = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(rafRef.current);
+  }, [start, speed, direction]);
+
+  const onPointerDown = (e: React.PointerEvent) => {
+    isMouseDown.current = true;
+    // Don't initiate carousel drag from selectable description text
+    const target = e.target as HTMLElement;
+    if (target.closest("[data-selectable]")) return;
+
+    isPending.current = true;
+    dragStartX.current = e.clientX;
+    dragStartPosition.current = positionRef.current;
   };
-  const getSpeed = () => {
-    if (containerRef.current) {
-      if (speed === "fast") {
-        containerRef.current.style.setProperty("--animation-duration", "20s");
-      } else if (speed === "normal") {
-        containerRef.current.style.setProperty("--animation-duration", "40s");
-      } else {
-        containerRef.current.style.setProperty("--animation-duration", "80s");
-      }
+
+  const onPointerMove = (e: React.PointerEvent) => {
+    if (!isPending.current && !isDragging.current) return;
+    if (!scrollerRef.current) return;
+
+    const delta = e.clientX - dragStartX.current;
+
+    if (!isDragging.current) {
+      if (Math.abs(delta) < DRAG_THRESHOLD) return;
+      isDragging.current = true;
+      isPending.current = false;
+      scrollerRef.current.style.userSelect = "none";
+      (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
     }
+
+    const loopWidth = scrollerRef.current.scrollWidth / 2;
+    let next = dragStartPosition.current - delta;
+    if (next >= loopWidth) next -= loopWidth;
+    if (next < 0) next += loopWidth;
+    positionRef.current = next;
   };
+
+  const onPointerUp = () => {
+    isMouseDown.current = false;
+    isDragging.current = false;
+    isPending.current = false;
+    if (scrollerRef.current) scrollerRef.current.style.userSelect = "";
+  };
+
   return (
     <div
-      ref={containerRef}
       className={cn(
-        "scroller relative z-20 max-w-full overflow-hidden",
+        "relative z-20 max-w-full overflow-hidden cursor-grab active:cursor-grabbing",
         className,
       )}
+      onPointerDown={onPointerDown}
+      onPointerMove={onPointerMove}
+      onPointerUp={onPointerUp}
+      onPointerLeave={onPointerUp}
+      onMouseEnter={pauseOnHover ? () => { isHovered.current = true; } : undefined}
+      onMouseLeave={pauseOnHover ? () => { isHovered.current = false; } : undefined}
     >
       <ul
         ref={scrollerRef}
-        className={cn(
-          "flex w-max min-w-full shrink-0 flex-nowrap gap-4 py-4",
-          start && "animate-scroll",
-          pauseOnHover && "hover:[animation-play-state:paused]",
-        )}
+        className="flex w-max min-w-full shrink-0 flex-nowrap gap-4 py-4"
       >
         {items.map((item, idx) => (
           <li
             className="relative w-[350px] max-w-full shrink-0 rounded-2xl border border-neutral-300 bg-neutral-50/30 px-8 py-6 md:w-[450px] dark:border-neutral-800 dark:bg-neutral-950/30"
             key={idx}
           >
-            <h2 className="flex flex-wrap items-center text-2xl font-bold">
-              <span className="inline-flex items-center whitespace-nowrap">
-                <item.icon
-                  style={{ width: "1em", height: "1em" }}
-                  className="mr-2 text-accent-500"
-                />
-                {item.name}
-              </span>
-            </h2>
-            <blockquote className="flex flex-col">
+            <p className="flex items-center gap-2 text-2xl font-bold overflow-hidden select-none">
+              <item.icon
+                className="size-6 shrink-0 text-accent-500"
+                aria-hidden="true"
+              />
+              <span className="truncate">{item.name}</span>
+            </p>
+            <div className="flex flex-col">
               <div
                 aria-hidden="true"
                 className="user-select-none pointer-events-none absolute -top-0.5 -left-0.5 -z-1 h-[calc(100%_+_4px)] w-[calc(100%_+_4px)]"
               ></div>
-              <div className="flex flex-row">
+              <div className="flex flex-row select-none">
                 <span className="flex flex-col gap-1">
                   <span className="text-sm font-medium">{item.position}</span>
                   <span className="text-sm text-zinc-600 dark:text-zinc-400">
                     {item.date}
                   </span>
-                  <span className="mt-2 text-sm">{item.description}</span>
+                  <span className="mt-2 text-sm select-text" data-selectable>{item.description}</span>
                 </span>
               </div>
-            </blockquote>
+            </div>
           </li>
         ))}
       </ul>

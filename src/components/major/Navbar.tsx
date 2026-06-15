@@ -97,7 +97,8 @@ export default function Navbar() {
   }, []);
 
   return (
-    <div
+    <nav
+      aria-label="Main navigation"
       className={`fixed top-0 left-0 z-50 w-full transition-transform duration-300 ${
         show ? "translate-y-0" : "-translate-y-full"
       }`}
@@ -107,7 +108,7 @@ export default function Navbar() {
         <div className="container mx-auto flex max-w-[90rem] justify-between px-5 md:px-10 lg:px-20">
           <div className="flex items-center gap-2 text-xl font-bold text-white">
             <span>Andrew Murwin</span>
-            <BadgeCheck className="h-6 w-6" />
+            <BadgeCheck className="h-6 w-6" aria-hidden="true" />
           </div>
           <div className="flex">
             <NavigationMenu className="hidden text-white lg:flex">
@@ -143,14 +144,15 @@ export default function Navbar() {
                   type="button"
                   variant="outline"
                   size="icon"
+                  aria-label="Open navigation menu"
                   className="cursor-pointer border-[rgba(255,255,255,0.15)] bg-[rgba(255,255,255,0.15)]/30 text-white hover:bg-[rgba(255,255,255,0.15)]/50 hover:text-white"
                 >
-                  <IconMenu2 />
+                  <IconMenu2 aria-hidden="true" />
                 </Button>
               </DrawerTrigger>
               <DrawerContent>
                 <DrawerHeader>
-                  <DrawerTitle className="hidden">Menu</DrawerTitle>
+                  <DrawerTitle className="sr-only">Navigation Menu</DrawerTitle>
                 </DrawerHeader>
 
                 <div className="px-4 pb-4">
@@ -175,6 +177,6 @@ export default function Navbar() {
           </div>
         </div>
       </div>
-    </div>
+    </nav>
   );
 }

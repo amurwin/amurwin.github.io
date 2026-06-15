@@ -116,6 +116,7 @@ export default function Education() {
             <GraduationCap
               style={{ width: "1em", height: "1em" }}
               className="ml-3 text-accent-500 md:ml-5"
+              aria-hidden="true"
             />
           }
           subheading="Rigorous study in computer science and engineering principles."

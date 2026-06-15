@@ -191,6 +191,7 @@ export default function Skills() {
             <Drill
               style={{ width: "1em", height: "1em" }}
               className="ml-4 text-accent-500 md:ml-6"
+              aria-hidden="true"
             />
           }
           subheading="Robust, relevant, and always evolving."
