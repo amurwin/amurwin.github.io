@@ -2,9 +2,9 @@
 
 A modern, responsive portfolio website built with Next.js, React, and Tailwind CSS.
 
-## Live Demo
+## Live Website
 
-[amurwin.github.io](https://amurwin.github.io)
+[andrewmurwin.com](https://andrewmurwin.com)
 
 ## Features
 
@@ -50,4 +50,4 @@ Open [http://localhost:3000](http://localhost:3000) to view in your browser.
 
 ## Contact
 
-[LinkedIn](https://www.linkedin.com/in/andrew-murwin/) · [GitHub](https://github.com/amurwin/amurwin.github.io)
+[LinkedIn](https://www.linkedin.com/in/andrew-murwin/) · [GitHub](https://github.com/amurwin/)
