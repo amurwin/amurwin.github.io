@@ -104,7 +104,7 @@ export default function Navbar() {
       }`}
       style={{ willChange: "transform" }}
     >
-      <div className="bg-opacity-90 w-full bg-accent-500 py-2 shadow-md backdrop-blur-md" style={{ '--color-ring': 'white' } as React.CSSProperties}>
+      <div className="bg-opacity-90 w-full bg-accent-500 py-2 shadow-md backdrop-blur-md dark:bg-accent-600" style={{ '--color-ring': 'white' } as React.CSSProperties}>
         <div className="container mx-auto flex max-w-[90rem] justify-between px-5 md:px-10 lg:px-20">
           <div className="flex items-center gap-2 text-xl font-bold text-white">
             <span>Andrew Murwin</span>

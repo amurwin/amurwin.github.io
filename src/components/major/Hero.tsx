@@ -125,7 +125,7 @@ export default function Hero() {
                   <a
                     href="/Andrew-Murwin-Resume.pdf"
                     download
-                    className="flex w-36 transform cursor-pointer items-center justify-center gap-2 rounded-lg bg-accent-500 px-6 py-2 font-medium text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-accent-500/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2 sm:w-40"
+                    className="flex w-36 transform cursor-pointer items-center justify-center gap-2 rounded-lg bg-accent-500 px-6 py-2 font-medium text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-accent-500/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2 dark:bg-accent-600 dark:hover:bg-accent-600/90 sm:w-40"
                   >
                     <IconDownload aria-hidden="true" />
                     Resume

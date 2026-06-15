@@ -14,7 +14,7 @@ export default function Home() {
       >
         Skip to main content
       </a>
-      <div id="home" className="bg-accent-500">
+      <div id="home" className="bg-accent-500 dark:bg-accent-600">
         <div className="container mx-auto max-w-[90rem] px-5 py-2 md:px-10 lg:px-20">
           <Navbar />
         </div>
