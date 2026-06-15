@@ -20,7 +20,7 @@ const themes = [
 type ThemeValue = (typeof themes)[number]["value"];
 
 export function ThemeColorToggle() {
-  const [theme, setTheme] = useState<ThemeValue>("blue");
+  const [theme, setTheme] = useState<ThemeValue>("red");
   const [open, setOpen] = useState(false);
 
   useEffect(() => {

@@ -57,6 +57,22 @@
 
 /* Light mode: one shade darker */
 :root,
+[data-theme="red"] {
+  --color-accent-200: var(--color-red-300);
+  --color-accent-400: var(--color-red-500);
+  --color-accent-500: var(--color-red-600);
+  --color-accent-600: var(--color-red-700);
+  --color-accent-800: var(--color-red-900);
+}
+
+[data-theme="green"] {
+  --color-accent-200: var(--color-green-300);
+  --color-accent-400: var(--color-green-600);
+  --color-accent-500: var(--color-green-700);
+  --color-accent-600: var(--color-green-800);
+  --color-accent-800: var(--color-green-900);
+}
+
 [data-theme="blue"] {
   --color-accent-200: var(--color-blue-300);
   --color-accent-400: var(--color-blue-500);
@@ -73,24 +89,25 @@
   --color-accent-800: var(--color-purple-900);
 }
 
-[data-theme="green"] {
-  --color-accent-200: var(--color-green-300);
-  --color-accent-400: var(--color-green-600);
-  --color-accent-500: var(--color-green-700);
-  --color-accent-600: var(--color-green-800);
-  --color-accent-800: var(--color-green-900);
-}
-
-[data-theme="red"] {
-  --color-accent-200: var(--color-red-300);
-  --color-accent-400: var(--color-red-500);
-  --color-accent-500: var(--color-red-600);
-  --color-accent-600: var(--color-red-700);
-  --color-accent-800: var(--color-red-900);
-}
 
 /* Dark mode: original base shades */
 .dark,
+.dark[data-theme="red"] {
+  --color-accent-200: var(--color-red-200);
+  --color-accent-400: var(--color-red-400);
+  --color-accent-500: var(--color-red-500);
+  --color-accent-600: var(--color-red-600);
+  --color-accent-800: var(--color-red-800);
+}
+
+.dark[data-theme="green"] {
+  --color-accent-200: var(--color-green-200);
+  --color-accent-400: var(--color-green-400);
+  --color-accent-500: var(--color-green-500);
+  --color-accent-600: var(--color-green-700);
+  --color-accent-800: var(--color-green-900);
+}
+
 .dark[data-theme="blue"] {
   --color-accent-200: var(--color-blue-200);
   --color-accent-400: var(--color-blue-400);
@@ -105,22 +122,6 @@
   --color-accent-500: var(--color-purple-500);
   --color-accent-600: var(--color-purple-600);
   --color-accent-800: var(--color-purple-800);
-}
-
-.dark[data-theme="green"] {
-  --color-accent-200: var(--color-green-200);
-  --color-accent-400: var(--color-green-400);
-  --color-accent-500: var(--color-green-500);
-  --color-accent-600: var(--color-green-700);
-  --color-accent-800: var(--color-green-900);
-}
-
-.dark[data-theme="red"] {
-  --color-accent-200: var(--color-red-200);
-  --color-accent-400: var(--color-red-400);
-  --color-accent-500: var(--color-red-500);
-  --color-accent-600: var(--color-red-600);
-  --color-accent-800: var(--color-red-800);
 }
 
 :root {
