@@ -48,6 +48,18 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000) to view in your browser.
 
+## Deployment
+
+Pushing to `main` automatically builds and publishes the site to GitHub Pages via a git pre-push hook.
+
+After cloning, run this once to activate it:
+
+```sh
+git config core.hooksPath .githooks
+```
+
+The hook (`.githooks/pre-push`) runs `npm run build && npm run deploy` before the push completes. If the build fails, the push is aborted.
+
 ## Contact
 
 [LinkedIn](https://www.linkedin.com/in/andrew-murwin/) · [GitHub](https://github.com/amurwin/)
