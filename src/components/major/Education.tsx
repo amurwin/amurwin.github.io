@@ -158,7 +158,7 @@ export default function Education() {
               ) : null}
               {degree.gpa ? (
                 <Badge className="bg-accent-500 text-neutral-100">
-                  {degree.gpa}
+                  GPA: {degree.gpa.toFixed(1)}
                 </Badge>
               ) : null}
             </div>
