@@ -2,7 +2,7 @@
 
 import { motion } from "motion/react";
 import { InfiniteMovingCards } from "../ui/InfiniteMovingCards";
-import { IconBrandLinkedin, IconDownload } from "@tabler/icons-react";
+import { IconBrandGithub, IconBrandLinkedin, IconDownload } from "@tabler/icons-react";
 import { Briefcase, Code, GraduationCap } from "lucide-react";
 import Image from "next/image";
 
@@ -134,10 +134,19 @@ export default function Hero() {
                     href="https://www.linkedin.com/in/andrew-murwin/"
                     target="_blank"
                     rel="noreferrer"
-                    className="flex w-36 transform cursor-pointer items-center justify-center gap-2 rounded-lg border border-gray-300 bg-white px-6 py-2 font-medium text-black transition-all duration-300 hover:-translate-y-0.5 hover:bg-gray-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2 sm:w-40 dark:border-gray-700 dark:bg-black dark:text-white dark:hover:bg-gray-900"
+                    className="flex w-36 shrink-0 transform cursor-pointer items-center justify-center gap-2 rounded-lg border border-gray-300 bg-white px-6 py-2 font-medium text-black transition-all duration-300 hover:-translate-y-0.5 hover:bg-gray-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2 sm:w-40 dark:border-gray-700 dark:bg-black dark:text-white dark:hover:bg-gray-900"
                   >
                     <IconBrandLinkedin aria-hidden="true" />
                     LinkedIn
+                  </a>
+                  <a
+                    href="https://github.com/amurwin/"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="flex w-36 shrink-0 transform cursor-pointer items-center justify-center gap-2 rounded-lg border border-gray-300 bg-white px-6 py-2 font-medium text-black transition-all duration-300 hover:-translate-y-0.5 hover:bg-gray-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2 sm:w-40 dark:border-gray-700 dark:bg-black dark:text-white dark:hover:bg-gray-900"
+                  >
+                    <IconBrandGithub aria-hidden="true" />
+                    GitHub
                   </a>
                 </div>
               </motion.div>
