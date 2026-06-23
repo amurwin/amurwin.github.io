@@ -1,6 +1,8 @@
 "use client";
 
 import { type MouseEvent, useEffect, useRef, useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -21,14 +23,18 @@ import { Button } from "../ui/Button";
 import { IconMenu2 } from "@tabler/icons-react";
 import { BadgeCheck } from "lucide-react";
 
-const menuItems = [
+const scrollItems = [
   { name: "Home", id: "home" },
   { name: "Experience", id: "experience" },
   { name: "Education", id: "education" },
   { name: "Skills", id: "skills" },
 ];
 
+const pageItems = [{ name: "Blog", href: "/blog" }];
+
 export default function Navbar() {
+  const pathname = usePathname();
+  const isHome = pathname === "/";
   const [show, setShow] = useState(true);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const lastScroll = useRef(0);
@@ -113,7 +119,7 @@ export default function Navbar() {
           <div className="flex">
             <NavigationMenu className="hidden text-white lg:flex">
               <NavigationMenuList>
-                {menuItems.map((item) => (
+                {scrollItems.map((item) => (
                   <NavigationMenuItem key={item.name}>
                     <NavigationMenuLink
                       asChild
@@ -122,13 +128,34 @@ export default function Navbar() {
                         " bg-transparent transition-none"
                       }
                     >
-                      <a
-                        href={`#${item.id}`}
-                        onClick={(e) => handleNavClick(e, item.id)}
-                        className="focus-visible:outline-none"
-                      >
+                      {isHome ? (
+                        <a
+                          href={`#${item.id}`}
+                          onClick={(e) => handleNavClick(e, item.id)}
+                          className="focus-visible:outline-none"
+                        >
+                          {item.name}
+                        </a>
+                      ) : (
+                        <Link href={`/#${item.id}`} className="focus-visible:outline-none">
+                          {item.name}
+                        </Link>
+                      )}
+                    </NavigationMenuLink>
+                  </NavigationMenuItem>
+                ))}
+                {pageItems.map((item) => (
+                  <NavigationMenuItem key={item.name}>
+                    <NavigationMenuLink
+                      asChild
+                      className={
+                        navigationMenuTriggerStyle() +
+                        " bg-transparent transition-none"
+                      }
+                    >
+                      <Link href={item.href} className="focus-visible:outline-none">
                         {item.name}
-                      </a>
+                      </Link>
                     </NavigationMenuLink>
                   </NavigationMenuItem>
                 ))}
@@ -157,15 +184,36 @@ export default function Navbar() {
                 </DrawerHeader>
 
                 <div className="px-4 pb-4">
-                  {menuItems.map((item) => (
+                  {scrollItems.map((item) => (
                     <div key={item.name} className="px-2 py-2 text-xl">
-                      <button
-                        type="button"
-                        onClick={(e) => handleNavClick(e, item.id)}
-                        className="w-full cursor-pointer rounded border-none bg-transparent p-0 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2"
+                      {isHome ? (
+                        <button
+                          type="button"
+                          onClick={(e) => handleNavClick(e, item.id)}
+                          className="w-full cursor-pointer rounded border-none bg-transparent p-0 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2"
+                        >
+                          {item.name}
+                        </button>
+                      ) : (
+                        <Link
+                          href={`/#${item.id}`}
+                          onClick={() => setDrawerOpen(false)}
+                          className="block w-full rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2"
+                        >
+                          {item.name}
+                        </Link>
+                      )}
+                    </div>
+                  ))}
+                  {pageItems.map((item) => (
+                    <div key={item.name} className="px-2 py-2 text-xl">
+                      <Link
+                        href={item.href}
+                        onClick={() => setDrawerOpen(false)}
+                        className="block w-full rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2"
                       >
                         {item.name}
-                      </button>
+                      </Link>
                     </div>
                   ))}
                 </div>
