@@ -66,10 +66,10 @@ export default function Skills() {
             "A query language for APIs that lets clients request exactly the data they need. Used at Starbucks for querying backend services and implementing data-driven features, as well as in personal projects for serving dynamic data.",
         },
         {
-          name: "HTML & CSS",
+          name: "HTML5 & CSS3",
           image: "/skills/html5.svg",
           description:
-            "The foundational languages of the web for structure and styling. I have a strong grasp of semantic HTML and CSS, including WCAG 2.1 AA accessibility standards applied in internship work to improve ARIA labels and color contrast.",
+            "The foundational languages of the web for structure and styling. I have a strong grasp of semantic HTML5 and CSS3, including WCAG 2.1 AA accessibility standards applied in internship work to improve ARIA labels and color contrast.",
         },
         {
           name: "D3.js",
@@ -107,16 +107,16 @@ export default function Skills() {
             "A JavaScript runtime for building server-side applications and tooling. I use it in personal projects for building APIs and backend services.",
         },
         {
-          name: "MongoDB",
-          image: "/skills/mongodb.svg",
-          description:
-            "A document-oriented NoSQL database for flexible, schema-free data storage. I worked with MongoDB as the data source for automated reporting and studied it formally in graduate school.",
-        },
-        {
           name: "PostgreSQL",
           image: "/skills/postgresql.png",
           description:
             "One of the leading open-source SQL databases. I use it in personal projects due to its lightweight nature and the ease of setup and teardown.",
+        },
+        {
+          name: "MongoDB",
+          image: "/skills/mongodb.svg",
+          description:
+            "A document-oriented NoSQL database for flexible, schema-free data storage. I worked with MongoDB as the data source for automated reporting and studied it formally in graduate school.",
         },
         {
           name: "NumPy",
