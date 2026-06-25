@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/next/ThemeProvider";
 import Navbar from "@/components/major/Navbar";
+import SkipLink from "@/components/minor/SkipLink";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -36,12 +37,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <div className="relative min-h-screen">
-            <a
-              href="#main-content"
-              className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:rounded focus:bg-accent-500 focus:px-4 focus:py-2 focus:text-white focus:outline-none"
-            >
-              Skip to main content
-            </a>
+            <SkipLink />
             <Navbar />
             <div className="relative z-10">{children}</div>
           </div>

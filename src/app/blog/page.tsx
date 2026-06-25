@@ -24,6 +24,7 @@ export default function BlogPage() {
     <>
       <main
         id="main-content"
+        tabIndex={-1}
         className="min-h-screen bg-[oklch(100%_0_0)] dark:bg-[oklch(17%_0_0)]"
       >
         <div className="container mx-auto max-w-3xl px-5 pt-32 pb-20 md:px-10">

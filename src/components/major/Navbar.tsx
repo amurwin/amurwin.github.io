@@ -1,6 +1,6 @@
 "use client";
 
-import { type MouseEvent, useEffect, useRef, useState } from "react";
+import { type MouseEvent, useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
@@ -35,9 +35,7 @@ const pageItems = [{ name: "Blog", href: "/blog" }];
 export default function Navbar() {
   const pathname = usePathname();
   const isHome = pathname === "/";
-  const [show, setShow] = useState(true);
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const lastScroll = useRef(0);
   const [scrollToId, setScrollToId] = useState<string | null>(null);
 
   // scroll to the section with the given id
@@ -51,13 +49,6 @@ export default function Navbar() {
       setTimeout(() => {
         const y = el.getBoundingClientRect().top + window.scrollY;
         window.scrollTo({ top: y, behavior: "smooth" });
-
-        // Logic to hide navbar after scrolling, if not scrolling to home
-        if (scrollToId !== "home") {
-          setTimeout(() => {
-            setShow(false);
-          }, 800);
-        }
 
         // Reset the state for the next click
         setScrollToId(null);
@@ -74,48 +65,22 @@ export default function Navbar() {
     setScrollToId(id);
   };
 
-  // scroll event listener to show/hide navbar
-  useEffect(() => {
-    const handleScroll = () => {
-      const currentScroll = window.scrollY;
-      const scrollPosition = window.scrollY + window.innerHeight;
-      const pageHeight = document.documentElement.scrollHeight;
-
-      if (pageHeight - scrollPosition <= 100) {
-        setShow(true);
-        lastScroll.current = currentScroll;
-        return;
-      }
-      if (currentScroll < 10) {
-        setShow(true);
-        lastScroll.current = currentScroll;
-        return;
-      }
-      if (currentScroll < lastScroll.current) {
-        setShow(true);
-      } else if (currentScroll > lastScroll.current) {
-        setShow(false);
-      }
-      lastScroll.current = currentScroll;
-    };
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   return (
     <nav
       aria-label="Main navigation"
-      className={`fixed top-0 left-0 z-50 w-full transition-transform duration-300 ${
-        show ? "translate-y-0" : "-translate-y-full"
-      }`}
+      className="fixed top-0 left-0 z-50 w-full"
       style={{ willChange: "transform" }}
     >
       <div className="bg-opacity-90 w-full bg-accent-500 py-2 shadow-md backdrop-blur-md dark:bg-accent-600" style={{ '--color-ring': 'white' } as React.CSSProperties}>
         <div className="container mx-auto flex max-w-[90rem] justify-between px-5 md:px-10 lg:px-20">
-          <div className="flex items-center gap-2 text-xl font-bold text-white">
-            <span>Andrew Murwin</span>
+          <Link
+            href="/"
+            className="flex items-center gap-2 text-xl font-bold text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white rounded px-1"
+          >
+            Andrew Murwin
             <BadgeCheck className="h-6 w-6" aria-hidden="true" />
-          </div>
+          </Link>
           <div className="flex">
             <NavigationMenu className="hidden text-white lg:flex">
               <NavigationMenuList>
@@ -132,12 +97,12 @@ export default function Navbar() {
                         <a
                           href={`#${item.id}`}
                           onClick={(e) => handleNavClick(e, item.id)}
-                          className="focus-visible:outline-none"
+                          className="focus:bg-transparent focus:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white rounded-sm"
                         >
                           {item.name}
                         </a>
                       ) : (
-                        <Link href={`/#${item.id}`} className="focus-visible:outline-none">
+                        <Link href={`/#${item.id}`} className="focus:bg-transparent focus:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white rounded-sm">
                           {item.name}
                         </Link>
                       )}
@@ -153,7 +118,7 @@ export default function Navbar() {
                         " bg-transparent transition-none"
                       }
                     >
-                      <Link href={item.href} className="focus-visible:outline-none">
+                      <Link href={item.href} className="focus:bg-transparent focus:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white rounded-sm">
                         {item.name}
                       </Link>
                     </NavigationMenuLink>

@@ -53,7 +53,7 @@ export function ThemeColorToggle() {
         <Button
           variant="outline"
           size="icon"
-          className="cursor-pointer border-[rgba(255,255,255,0.15)] bg-[rgba(255,255,255,0.15)]/30 text-white hover:bg-[rgba(255,255,255,0.15)]/50 hover:text-white"
+          className="cursor-pointer border-[rgba(255,255,255,0.15)] bg-[rgba(255,255,255,0.15)]/30 text-white hover:bg-[rgba(255,255,255,0.15)]/50 hover:text-white focus-visible:ring-2 focus-visible:ring-white"
         >
           <Palette className="h-[1.2rem] w-[1.2rem]" />
           <span className="sr-only">Change color theme</span>

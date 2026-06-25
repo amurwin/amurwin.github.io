@@ -10,7 +10,7 @@ export default function Home() {
       <div id="home" className="bg-accent-500 dark:bg-accent-600">
         <div className="container mx-auto max-w-[90rem] px-5 py-2 md:px-10 lg:px-20" />
       </div>
-      <main id="main-content">
+      <main id="main-content" tabIndex={-1}>
         <div className="bg-[oklch(100%_0_0)] dark:bg-[oklch(17%_0_0)]">
           <div className="container mx-auto max-w-[90rem] px-5 pt-30 pb-8 md:px-10 lg:px-20">
             <Hero />

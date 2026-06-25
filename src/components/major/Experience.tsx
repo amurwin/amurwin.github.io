@@ -16,31 +16,6 @@ export default function Experience() {
           </div>
           <div className="my-8">
             <div className="text-lg font-medium text-neutral-900 dark:text-neutral-100">
-              Testing Infrastructure
-            </div>
-            <div className="flex items-start gap-2 text-sm text-neutral-800 md:text-base dark:text-neutral-200">
-              <div>
-                <Check className="text-accent-500" />
-              </div>
-              <div>
-                Designed and shipped a <strong>standardized Jest test wrapper now used in 90% of new React component tests</strong> across the codebase, fixing the most common developer testing gaps and establishing shared test ownership patterns at scale.
-              </div>
-            </div>
-
-            <div className="mt-6 text-lg font-medium text-neutral-900 dark:text-neutral-100">
-              Design System
-            </div>
-            <div className="flex items-start gap-2 text-sm text-neutral-800 md:text-base dark:text-neutral-200">
-              <div>
-                <Check className="text-accent-500" />
-              </div>
-              <div>
-                Led modal component consolidation effort in partnership with design by auditing 30 existing implementations, reconciling conflicting requirements, and delivering a scalable, reusable pattern that{" "}
-                <strong>reduced modal implementation time by 80%</strong>.
-              </div>
-            </div>
-
-            <div className="mt-6 text-lg font-medium text-neutral-900 dark:text-neutral-100">
               Microfrontend Architecture
             </div>
             <div className="flex items-start gap-2 text-sm text-neutral-800 md:text-base dark:text-neutral-200">
@@ -48,19 +23,19 @@ export default function Experience() {
                 <Check className="text-accent-500" />
               </div>
               <div>
-                Built a proof-of-concept <strong>microfrontend implementation using Webpack Module Federation</strong>, demonstrating feasibility of decoupling a shared codebase to accelerate co-located team feature development and reduce deployment dependencies.
+                Implemented a <strong>React MFE superapp using Webpack Module Federation</strong> to decouple three existing web apps, <strong>improving feature release velocity by 20%</strong> through eliminating testing and deployment bottlenecks.
               </div>
             </div>
 
             <div className="mt-6 text-lg font-medium text-neutral-900 dark:text-neutral-100">
-              Routing Standardization
+              Unified Platform
             </div>
             <div className="flex items-start gap-2 text-sm text-neutral-800 md:text-base dark:text-neutral-200">
               <div>
                 <Check className="text-accent-500" />
               </div>
               <div>
-                Designed and drove <strong>org-wide adoption of a React Router search parameter pattern</strong> that auto-standardizes parameter validation and default values, reducing bugs and accelerating feature development across teams.
+                Implemented and presented a <strong>React Native Greenfield mobile app unification platform</strong> to cross-functional stakeholders and leadership, providing tradeoffs for governance, security, adoptability, and component ownership to secure alignment on tech stack and approach.
               </div>
             </div>
 
@@ -72,8 +47,43 @@ export default function Experience() {
                 <Check className="text-accent-500" />
               </div>
               <div>
-                Led full codebase migration and achieved a{" "}
-                <strong>38% bundle size reduction</strong> through tree shaking, code splitting, and reducing unnecessary region support; reduced build times and unblocked adoption of Webpack 5 features including Module Federation.
+                Led migration of 10 modules to Webpack 5, <strong>reducing dev server build time by 40% and improving stability by 30%</strong>, and enabling adoption of Microfrontend architecture for three teams post-migration.
+              </div>
+            </div>
+
+            <div className="mt-6 text-lg font-medium text-neutral-900 dark:text-neutral-100">
+              Design System
+            </div>
+            <div className="flex items-start gap-2 text-sm text-neutral-800 md:text-base dark:text-neutral-200">
+              <div>
+                <Check className="text-accent-500" />
+              </div>
+              <div>
+                Led design token alignment effort on <strong>500+ components</strong> to facilitate faster design-to-frontend conversion. First modal redesign implementation led to an <strong>80% reduction in new modal implementation time</strong>.
+              </div>
+            </div>
+
+            <div className="mt-6 text-lg font-medium text-neutral-900 dark:text-neutral-100">
+              Routing Standardization
+            </div>
+            <div className="flex items-start gap-2 text-sm text-neutral-800 md:text-base dark:text-neutral-200">
+              <div>
+                <Check className="text-accent-500" />
+              </div>
+              <div>
+                Designed and drove <strong>org-wide adoption of a React Router search parameter pattern</strong> that auto-standardizes parameter validation and default values, <strong>improving routing feature implementation time by 70%</strong>.
+              </div>
+            </div>
+
+            <div className="mt-6 text-lg font-medium text-neutral-900 dark:text-neutral-100">
+              Testing Infrastructure
+            </div>
+            <div className="flex items-start gap-2 text-sm text-neutral-800 md:text-base dark:text-neutral-200">
+              <div>
+                <Check className="text-accent-500" />
+              </div>
+              <div>
+                Designed and shipped a <strong>standardized Jest test wrapper</strong> that fixed the most common developer testing gaps and established shared testing patterns at scale, <strong>reducing test development time by 30%</strong>.
               </div>
             </div>
           </div>
@@ -116,7 +126,7 @@ export default function Experience() {
                 <Check className="text-accent-500" />
               </div>
               <div>
-                Built a <strong>full-stack project contribution dashboard</strong> using .NET MVC, with RBAC features via C# LDAP integration against Microsoft Active Directory.
+                <strong>Reduced time spent locating project contribution data by 60%</strong> by implementing a full-stack MVC dashboard with C# LDAP integrations against Active Directory.
               </div>
             </div>
           </div>
@@ -124,7 +134,7 @@ export default function Experience() {
       ),
     },
     {
-      title: "2018",
+      title: "2018 - 2025",
       content: (
         <div>
           <div className="text-3xl">Mindful Planet - Phoenix, AZ</div>
@@ -138,7 +148,7 @@ export default function Experience() {
               </div>
               <div>
                 Automated Excel reporting using Python (pymongo, pandas, xlsxwriter) to extract and transform data from a MongoDB database,{" "}
-                <strong>establishing a repeatable data pipeline</strong> for report generation and documenting the shared database structure for contractor onboarding.
+                <strong>establishing a reusable data pipeline</strong> for report generation and documenting the shared database structure for contractor onboarding.
               </div>
             </div>
           </div>

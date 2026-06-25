@@ -81,7 +81,7 @@ export default function Skills() {
           name: "Jest",
           image: "/skills/jest.svg",
           description:
-          "A JavaScript testing framework for unit and integration tests. I designed and shipped a standardized Jest test wrapper now used in 90% of new React component tests at Starbucks, fixing common testing gaps and establishing shared ownership patterns.",
+          "A JavaScript testing framework for unit and integration tests. I designed and shipped a standardized Jest test wrapper that fixed the most common developer testing gaps and established shared testing patterns at scale, reducing test development time by 30%.",
         },
         {
           name: "React Testing Library",
@@ -145,7 +145,7 @@ export default function Skills() {
           name: "Webpack",
           image: "/skills/webpack.svg",
           description:
-            "A module bundler that compiles JavaScript applications for the browser. I led the full Webpack v4→v5 migration at Starbucks, achieving a 38% bundle size reduction and enabling Module Federation for microfrontend architecture.",
+            "A module bundler that compiles JavaScript applications for the browser. I led the Webpack v4→v5 migration of 10 modules at Starbucks, reducing dev server build time by 40% and improving stability by 30%, and enabling Module Federation for microfrontend architecture.",
         },
         {
           name: "Git",

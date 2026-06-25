@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
-import { InfiniteMovingCards } from "../ui/InfiniteMovingCards";
+import { CardCarousel } from "../ui/CardCarousel";
 import { IconBrandGithub, IconBrandLinkedin, IconDownload } from "@tabler/icons-react";
 import { Briefcase, Code, GraduationCap } from "lucide-react";
 import Image from "next/image";
@@ -13,7 +13,7 @@ const testimonials = [
     position: "Software Engineer II",
     date: "May 2023 - Present",
     description:
-      "Building and scaling React/TypeScript applications at enterprise scale. Delivered shared testing infrastructure, led modal design system consolidation, drove org-wide routing standardization, and led the Webpack v4→v5 migration achieving a 38% bundle size reduction.",
+      "Building and scaling React/TypeScript applications at enterprise scale. Delivered MFE superapp via Webpack Module Federation, led Webpack v4→v5 migration, drove org-wide routing standardization, and led design token alignment across 500+ components.",
   },
   {
     name: "Arizona State University",
@@ -53,7 +53,7 @@ const testimonials = [
     position: "Business Data Analyst (Freelance)",
     date: "January 2018 - January 2025",
     description:
-      "Automated Excel reporting using Python (pymongo, pandas, xlsxwriter) to extract and transform data from a MongoDB database, establishing a repeatable data pipeline and documenting shared database structure for contractor onboarding.",
+      "Automated Excel reporting using Python (pymongo, pandas, xlsxwriter) to extract and transform data from a MongoDB database, establishing a reusable data pipeline and documenting shared database structure for contractor onboarding.",
   },
 ];
 
@@ -125,7 +125,7 @@ export default function Hero() {
                   <a
                     href="/Andrew-Murwin-Resume.pdf"
                     download
-                    className="flex w-36 transform cursor-pointer items-center justify-center gap-2 rounded-lg bg-accent-500 px-6 py-2 font-medium text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-accent-500/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2 dark:bg-accent-600 dark:hover:bg-accent-600/90 sm:w-40"
+                    className="flex w-36 transform cursor-pointer items-center justify-center gap-2 rounded-lg bg-accent-500 px-6 py-2 font-medium text-white transition-[transform,background-color] duration-300 hover:-translate-y-0.5 hover:bg-accent-500/90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black dark:bg-accent-600 dark:hover:bg-accent-600/90 dark:focus-visible:outline-white sm:w-40"
                   >
                     <IconDownload aria-hidden="true" />
                     Resume
@@ -134,7 +134,7 @@ export default function Hero() {
                     href="https://www.linkedin.com/in/andrew-murwin/"
                     target="_blank"
                     rel="noreferrer"
-                    className="flex w-36 shrink-0 transform cursor-pointer items-center justify-center gap-2 rounded-lg border border-gray-300 bg-white px-6 py-2 font-medium text-black transition-all duration-300 hover:-translate-y-0.5 hover:bg-gray-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2 sm:w-40 dark:border-gray-700 dark:bg-black dark:text-white dark:hover:bg-gray-900"
+                    className="flex w-36 shrink-0 transform cursor-pointer items-center justify-center gap-2 rounded-lg border border-gray-300 bg-white px-6 py-2 font-medium text-black transition-[transform,background-color] duration-300 hover:-translate-y-0.5 hover:bg-gray-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black dark:focus-visible:outline-white sm:w-40 dark:border-gray-700 dark:bg-black dark:text-white dark:hover:bg-gray-900"
                   >
                     <IconBrandLinkedin aria-hidden="true" />
                     LinkedIn
@@ -143,7 +143,7 @@ export default function Hero() {
                     href="https://github.com/amurwin/"
                     target="_blank"
                     rel="noreferrer"
-                    className="flex w-36 shrink-0 transform cursor-pointer items-center justify-center gap-2 rounded-lg border border-gray-300 bg-white px-6 py-2 font-medium text-black transition-all duration-300 hover:-translate-y-0.5 hover:bg-gray-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2 sm:w-40 dark:border-gray-700 dark:bg-black dark:text-white dark:hover:bg-gray-900"
+                    className="flex w-36 shrink-0 transform cursor-pointer items-center justify-center gap-2 rounded-lg border border-gray-300 bg-white px-6 py-2 font-medium text-black transition-[transform,background-color] duration-300 hover:-translate-y-0.5 hover:bg-gray-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black dark:focus-visible:outline-white sm:w-40 dark:border-gray-700 dark:bg-black dark:text-white dark:hover:bg-gray-900"
                   >
                     <IconBrandGithub aria-hidden="true" />
                     GitHub
@@ -189,15 +189,9 @@ export default function Hero() {
             transition={{
               duration: 0.4,
             }}
-            className="z-10 mt-10 flex flex-wrap items-center justify-center gap-4"
+            className="z-10 mt-10"
           >
-            <div className="dark:bg-grid-white/[0.05] flex h-[20rem] flex-col items-center justify-center overflow-hidden rounded-md antialiased">
-              <InfiniteMovingCards
-                items={testimonials}
-                direction="right"
-                speed="normal"
-              />
-            </div>
+            <CardCarousel items={testimonials} />
           </motion.div>
         </div>
       </div>

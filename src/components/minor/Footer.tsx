@@ -13,7 +13,7 @@ export default function Footer() {
             target="_blank"
             rel="noreferrer"
             aria-label="GitHub repository (opens in new tab)"
-            className="rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2"
+            className="rounded focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-500"
           >
             <Image
               src="/github-white.svg"
